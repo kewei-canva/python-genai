@@ -3204,13 +3204,10 @@ def _GenerateVideosOperation_from_mldev(
   if getv(from_object, ['error']) is not None:
     setv(to_object, ['error'], getv(from_object, ['error']))
 
-  if getv(from_object, ['response']) is not None:
-    setv(to_object, ['response'], getv(from_object, ['response']))
-
   if getv(from_object, ['response', 'generateVideoResponse']) is not None:
     setv(
         to_object,
-        ['result'],
+        ['response'],
         _GenerateVideosResponse_from_mldev(
             api_client,
             getv(from_object, ['response', 'generateVideoResponse']),
@@ -3847,12 +3844,9 @@ def _GenerateVideosOperation_from_vertex(
     setv(to_object, ['error'], getv(from_object, ['error']))
 
   if getv(from_object, ['response']) is not None:
-    setv(to_object, ['response'], getv(from_object, ['response']))
-
-  if getv(from_object, ['response']) is not None:
     setv(
         to_object,
-        ['result'],
+        ['response'],
         _GenerateVideosResponse_from_vertex(
             api_client, getv(from_object, ['response']), to_object
         ),
@@ -4795,7 +4789,7 @@ class Models(_api_module.BaseModule):
           time.sleep(10)
           operation = client.operations.get(operation)
 
-      operation.result.generated_videos[0].video.uri
+      operation.response.generated_videos[0].video.uri
       ```
     """
 
@@ -6298,7 +6292,7 @@ class AsyncModels(_api_module.BaseModule):
           time.sleep(10)
           operation = client.operations.get(operation)
 
-      operation.result.generated_videos[0].video.uri
+      operation.response.generated_videos[0].video.uri
       ```
     """
 

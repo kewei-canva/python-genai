@@ -111,7 +111,7 @@ def test_text_to_video_poll(client):
       time.sleep(20)
     operation = client.operations.get(operation=operation)
 
-  assert operation.result.generated_videos[0].video.uri
+  assert operation.response.generated_videos[0].video.uri
 
 
 def test_image_to_video_poll(client):
@@ -129,7 +129,7 @@ def test_image_to_video_poll(client):
       time.sleep(60)
     operation = client.operations.get(operation=operation)
 
-  assert operation.result.generated_videos[0].video.uri
+  assert operation.response.generated_videos[0].video.uri
 
 
 def test_text_and_image_to_video_poll(client):
@@ -148,15 +148,15 @@ def test_text_and_image_to_video_poll(client):
       time.sleep(60)
     operation = client.operations.get(operation=operation)
 
-  assert operation.result.generated_videos[0].video.uri
+  assert operation.response.generated_videos[0].video.uri
 
 
 def test_create_operation_to_poll(client):
   if client.vertexai:
     # Fill in project and location for record mode
-    operation_name = "projects/<project>/locations/<location>/publishers/google/models/veo-2.0-generate-001/operations/ce4324d0-1a9f-4fd0-98de-0c54e2ca5798"
+    operation_name = "projects/<project>/locations/<location>/publishers/google/models/veo-2.0-generate-001/operations/4a040b94-2343-4748-9322-c284371bdbd5"
   else:
-    operation_name = "models/veo-2.0-generate-001/operations/s421ckxsogje"
+    operation_name = "models/veo-2.0-generate-001/operations/xtc75gxjir7d"
 
   operation = types.GenerateVideosOperation(
       name=operation_name,
@@ -167,7 +167,7 @@ def test_create_operation_to_poll(client):
       time.sleep(20)
     operation = client.operations.get(operation=operation)
 
-  assert operation.result.generated_videos[0].video.uri
+  assert operation.response.generated_videos[0].video.uri
 
 
 @pytest.mark.asyncio
@@ -187,4 +187,4 @@ async def test_text_to_video_poll_async(client):
       time.sleep(20)
     operation = await client.aio.operations.get(operation=operation)
 
-  assert operation.result.generated_videos[0].video.uri
+  assert operation.response.generated_videos[0].video.uri
